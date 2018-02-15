@@ -1,1 +1,1 @@
-global.DeonLog = new Mongo.Collection();
+global.DeonLog = new Mongo.Collection("_deon_log");
