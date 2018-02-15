@@ -16,7 +16,7 @@ Package.onUse(function(api) {
 
   api.use("mongo");
 
-  api.addFiles("deon-log", ["client", "server" ]);
+  api.addFiles("deon-log.js", ["client", "server" ]);
 
   api.mainModule("deon-connection.js");
 
