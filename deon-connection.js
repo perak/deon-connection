@@ -148,7 +148,7 @@ export class DeonConnection {
 		}
 
 		if(cb) {
-			cb(result);
+			cb(null, result);
 		}
 		return result;
 	}
@@ -195,7 +195,7 @@ export class DeonConnection {
 		}
 
 		if(cb) {
-			cb(result);
+			cb(null, result);
 		}
 		return result;
 	}
