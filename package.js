@@ -32,5 +32,5 @@ Package.onTest(function(api) {
 
 Npm.depends({
     "ws": "4.0.0",
-    "checksum": "^0.1.1"
+    "checksum": "0.1.1"
 });
