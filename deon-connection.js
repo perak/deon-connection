@@ -27,10 +27,11 @@ export class DeonConnection {
 
 		if(!this.options.url) {
 			let errorMsg = "ERROR: Deon API URL is not set.";
+			let error = new Meteor.Error(500, errorMsg);
 			if(cb) {
-				cb(new Error(errorMsg));
+				cb(error);
 			} else {
-				console.log(errorMsg);
+				throw error;
 			}
 		}
 
@@ -141,16 +142,35 @@ export class DeonConnection {
 		} catch(e) {
 			if(cb) {
 				cb(e);
-				return null;
 			} else {
-				console.error(e);
+				throw new Meteor.Error(e.error, e.message);
 			}
+			return null;
+		}
+
+		if(result.statusCode != 200) {
+			let message = result.data || "";
+			let error = new Meteor.Error(result.statusCode, message);
+
+			if(cb) {
+				cb(error);
+			} else {
+				throw e;
+			}
+			return null;
+		}
+
+		let content = null;
+		try {
+			content = JSON.parse(result.content);
+		} catch(e) {
+			content = result.content;
 		}
 
 		if(cb) {
-			cb(null, result);
+			cb(null, content);
 		}
-		return result;
+		return content;
 	}
 
 	apiGet(url, cb) {
@@ -188,15 +208,34 @@ export class DeonConnection {
 		} catch(e) {
 			if(cb) {
 				cb(e);
-				return null;
 			} else {
-				console.error(e);
+				throw new Meteor.Error(e.error, e.message);
 			}
+			return null;
+		}
+
+		if(result.statusCode != 200) {
+			let message = result.data || "";
+			let error = new Meteor.Error(result.statusCode, message);
+
+			if(cb) {
+				cb(error);
+			} else {
+				throw error;
+			}
+			return null;
+		}
+
+		let content = null;
+		try {
+			content = JSON.parse(result.content);
+		} catch(e) {
+			content = result.content;
 		}
 
 		if(cb) {
-			cb(null, result);
+			cb(null, content);
 		}
-		return result;
+		return content;
 	}
 }
