@@ -38,7 +38,7 @@ export class DeonConnection {
 		if(this.options.eventsUrl) {
 			this.listenEvents(cb);
 
-			Meteor.setTimeout(() => {
+			Meteor.setInterval(() => {
 				if(self.socketBroken) {
 					console.log("Deon WebSocket connection is broken. Reconnecting...");
 					self.listenEvents(cb);
@@ -99,7 +99,6 @@ export class DeonConnection {
 				// normally closed
 				return;
 			}
-
 			self.socketBroken = true;
 		};
 	}

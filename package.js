@@ -1,8 +1,8 @@
 Package.describe({
   name: "perak:deon-connection",
-  version: "1.0.3",
+  version: "1.0.4",
   // Brief, one-line summary of the package.
-  summary: "Deon API and event listener",
+  summary: "DeonDigital API wrapper for Meteor",
   // URL to the Git repository containing the source code for this package.
   git: "https://github.com/perak/deon-connection.git",
   // By default, Meteor will default to using README.md for documentation.
